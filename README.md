@@ -1,13 +1,11 @@
 Design de l'Application
 
-1. 
-Architecture de l'application
+1. Architecture de l'application
 
 Frontend : HTML, CSS (avec Bootstrap ou Tailwind CSS), JS Vanilla.
 Stockage : "localStorage" pour la persistance des données entre les sessions.
 
-2. 
-Structure de la page
+2. Structure de la page
 
 Barre de navigation : Liens pour ajouter des joueurs, changer la formation, et afficher les statistiques.
 
