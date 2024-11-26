@@ -1,0 +1,206 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Body styles */
+body {
+    color: #633187;
+    display: flex;
+    flex-direction: column;
+    background-image: url('img/stadium_background.webp');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+}
+
+.main {
+    flex: 1;
+    display: flex;
+    width: 100%;
+    max-width: 2000px;
+    margin: 1.5rem auto;
+    gap: 1.5rem;
+    padding: 0 1.5rem;
+}
+
+.form-player {
+    flex: 1;
+    background-image: url(img/back-form.jpeg);
+    padding: 10px;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.formation-container {
+    flex: 2; 
+    position: relative;
+
+}
+
+.formation-grid {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    height: 100%;
+    width:100%;
+    max-height: 700px;
+}
+
+
+.player-card {
+    position: relative;
+    margin: 10px;
+    width: 100px; 
+    height: 120px; 
+    
+}
+
+.card-background {
+    width: 80%;
+    height: auto;
+}
+
+.gk {
+    position: absolute;
+    bottom: 0;
+    left: 5px;
+    text-align: center;
+    color: white; 
+}
+
+#add-player-form {
+    display: flex;
+    flex-direction: column;
+}
+
+#add-player-form label {
+    margin-bottom: 5px;
+    font-size: 1.1rem;
+    font-weight: bold;
+}
+
+#add-player-form input,
+#add-player-form select {
+    font-size: 0.9rem;
+    font-weight: 300;
+    border-color: #28a745;
+    border-radius: 8px;
+    padding: 7px;
+    margin-bottom: 8px;
+}
+
+
+
+.input-group {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.input-group label {
+    font-size: 0.8rem;
+}
+
+.input-group input {
+    width: 45%;
+    font-size: 0.8rem;
+    padding: 8px;
+    border-radius: 4px;
+    border: 1px solid #ccc;
+}
+
+#add-player-form input:focus,
+#add-player-form select:focus {
+    outline: none;
+    border-color: #28a745;
+    box-shadow: 0 0 5px #28a745;
+}
+
+button{
+    font-size: 1.1rem;
+    border: none;
+    border-radius: 40px;
+    cursor: pointer;
+    background-color: #1d54ae;
+    color: white;
+    padding: 8px 12px;
+    transition: transform 0.2s ease;
+}
+
+/*Starting Eleven positioning*/
+
+.goalkeeper{
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.left-back{
+    position: absolute;
+    left: 23%;
+    transform: translateX(-149%);
+    bottom: 5rem;
+}
+
+.cubarsi{
+    position: absolute;
+    left: 36%;
+    transform: translateX(-92%);
+    bottom: 5rem;
+}
+
+.araujo{
+    position: absolute;
+    left: 59%;
+    transform: translateX(37%);
+    bottom: 5rem;
+}
+
+.kounde{
+    position: absolute;
+    left: 84%;
+    bottom: 5rem;
+}
+
+.rodri{
+    position: absolute;
+    left: 44%;
+    bottom: 16rem;
+}
+
+.pedri{
+    position: absolute;
+    left: 23%;
+    bottom: 18rem;
+}
+
+.modric{
+    position: absolute;
+    left: 66%;
+    bottom: 18rem;
+}
+
+.lewa{
+    position: absolute;
+    left: 44%;
+    bottom: 28rem;
+}
+
+.lamine {
+    position: absolute;
+    left: 75%;
+    bottom: 28rem;
+}
+
+.vinicius{
+    position: absolute;
+    left: 15%;
+    bottom: 28rem;
+}

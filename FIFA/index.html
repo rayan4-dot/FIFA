@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FUT CHAMPIONS</title>
+    <link href="styles.css" rel="stylesheet">
+</head>
+<body>
+
+<div class=" main">
+    <div class="formation-container">
+        <div><img src="img/Capture_d_ecran_25-11-2024_222212_-removebg.webp" width="100%" alt=""></div>
+        <div class="formation-grid">
+            <div class="goalkeeper">
+                <div class="player-card" data-position="GK">
+                    <img src="img/badge_total_rush.webp" alt="Player Card" class="card-background">
+                    <div class="gk">
+                        <div class="player-position" style="font-size: larger;">GK</div>
+                        <div class="player-name"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="left-back">
+                <div class="player-card" data-position="LB">
+                    <img src="img/badge_total_rush.webp" alt="Player Card" class="card-background">
+                    <div class="gk">
+                        <div class="player-position" style="font-size: large;">LB</div>
+                        <div class="player-name"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="cubarsi">
+                <div class="player-card" data-position="CB">
+                    <img src="img/badge_total_rush.webp" alt="Player Card" class="card-background">
+                    <div class="gk">
+                        <div class="player-position" style="font-size: large;">CB</div>
+                        <div class="player-name"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="araujo">
+                <div class="player-card" data-position="CB">
+                    <img src="img/badge_total_rush.webp" alt="Player Card" class="card-background">
+                    <div class="gk">
+                        <div class="player-position" style="font-size: large;">CB</div>
+                        <div class="player-name"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="kounde">
+                <div class="player-card" data-position="RB">
+                    <img src="img/badge_total_rush.webp" alt="Player Card" class="card-background">
+                    <div class="gk">
+                        <div class="player-position" style="font-size: large;">RB</div>
+                        <div class="player-name"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="rodri">
+                <div class="player-card" data-position="DM">
+                    <img src="img/badge_total_rush.webp" alt="Player Card" class="card-background">
+                    <div class="gk">
+                        <div class="player-position" style="font-size: large;">DM</div>
+                        <div class="player-name"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="pedri">
+                <div class="player-card" data-position="DM">
+                    <img src="img/badge_total_rush.webp" alt="Player Card" class="card-background">
+                    <div class="gk">
+                        <div class="player-position" style="font-size: large;">CM</div>
+                        <div class="player-name"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="modric">
+                <div class="player-card" data-position="DM">
+                    <img src="img/badge_total_rush.webp" alt="Player Card" class="card-background">
+                    <div class="gk">
+                        <div class="player-position" style="font-size: large;">CM</div>
+                        <div class="player-name"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="lewa">
+                <div class="player-card" data-position="ST">
+                    <img src="img/badge_total_rush.webp" alt="Player Card" class="card-background">
+                    <div class="gk">
+                        <div class="player-position" style="font-size: large;">ST</div>
+                        <div class="player-name"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="lamine">
+                <div class="player-card" data-position="RW">
+                    <img src="img/badge_total_rush.webp" alt="Player Card" class="card-background">
+                    <div class="gk">
+                        <div class="player-position" style="font-size: large;">RW</div>
+                        <div class="player-name"></div>
+                    </div>
+                </div>
+            </div>
+            <div class="vinicius">
+                <div class="player-card" data-position="LW">
+                    <img src="img/badge_total_rush.webp" alt="Player Card" class="card-background">
+                    <div class="gk">
+                        <div class="player-position" style="font-size: large;">LW</div>
+                        <div class="player-name"></div>
+                    </div>
+                </div>
+            </div>
+            <!-- Include additional player positions as needed -->
+        </div>
+    </div>
+
+
+    
+    <div class="form-player">
+        <form id="add-player-form">
+            <h2>Formation</h2>
+            <select id="formation">
+                <option value="#" selected>4-3-3</option>
+                <option value="#">4-4-2</option>
+            </select>
+            <label for="player-photo">Player image</label>
+            <input type="file" id="player-photo" name="photo" accept="image/*" required>
+
+            <label for="player-name">Player name</label>
+            <input type="text" id="player-name" name="name" required>
+
+            <label for="player-position">Pick position</label>
+            <select id="player-position" name="position" required>
+                <option value="#">GK</option>
+                <option value="#">CB</option>
+                <option value="#">LB</option>
+                <option value="#">RB</option>
+                <option value="#">CD</option>
+                <option value="#">CM</option>
+                <option value="#">LW</option>
+                <option value="#">RW</option>
+                <option value="#">LM</option>
+                <option value="#">RM</option>
+                <option value="#">ST</option>
+            </select>
+
+            <label for="player-nationality">Nationality</label>
+            <input type="text"  name="nationality" required>
+
+            <label for="player-flag">Flag</label>
+            <input type="file"name="flag" accept="image/*" required>
+
+            <label for="player-club">Club</label>
+            <input type="text"name="club" required>
+
+            <label for="player-logo">Club Logo</label>
+            <input type="file" name="logo" accept="image/*" required>
+
+            <div class="input-group">
+                <label for="player-rating">rating</label>
+                <input type="number" id="player-rating" name="rating" min="10" max="99" required>
+            </div>
+
+            <div class="input-group">
+                <label for="player-pace">pace</label>
+                <input type="number" name="pacing" min="10" max="99" required>
+            </div>
+
+            <div class="input-group">
+                <label for="player-shooting">shooting</label>
+                <input type="number" name="shooting" min="10" max="99" required>
+            </div>
+
+            <div class="input-group">
+                <label for="player-passing">passing</label>
+                <input type="number" name="passing" min="10" max="99" required>
+            </div>
+
+            <div class="input-group">
+                <label for="player-dribbling">dribbling</label>
+                <input type="number" name="dribbling" min="10" max="99" required>
+            </div>
+
+            <div class="input-group">
+                <label for="player-defending">defending</label>
+                <input type="number" name="defending" min="10" max="99" required>
+            </div>
+
+            <div class="input-group">
+                <label for="player-physical">physique</label>
+                <input type="number" name="physical" min="10" max="99" required>
+            </div>
+
+            <button type="submit">Add Player</button>
+        </form>
+    </div>
+
+</div>
+
+</body>
+</html>
