@@ -1,10 +1,11 @@
+
+
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
 
-/* Body styles */
 body {
     color: #633187;
     display: flex;
@@ -35,29 +36,38 @@ body {
 }
 
 .formation-container {
-    flex: 2; 
+    grid: 2; 
     position: relative;
-
+    display: flex;
+    flex-direction: column;
+    
 }
 
 .formation-grid {
-    display: flex;
-    gap: 10px;
-    align-items: center;
-    position: absolute;
-    top: 0;
-    height: 100%;
-    width:100%;
-    max-height: 700px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr); /* 5 columns for the formation grid */
+    grid-template-rows: repeat(4, 1fr); /* 4 rows for different player positions */
+    gap: 61px;
+
 }
 
-
 .player-card {
-    position: relative;
-    margin: 10px;
-    width: 100px; 
+    width: 98px; 
     height: 120px; 
-    
+    display: flex;
+    background-color: rgba(135, 142, 137, 0);
+    flex-direction: column; 
+    justify-content: space-between; 
+    align-items: center; 
+    margin: 0 auto;
+    position: relative; 
+    transition: transform 0.3s ease
+}
+
+.player-card:hover {
+    transform: scale(1.05); 
+    box-shadow: 0 8px 16px rgba(0, 255, 0, 0.6); 
+    background-color: rgba(255, 255, 255, 0.1); 
 }
 
 .card-background {
@@ -66,12 +76,22 @@ body {
 }
 
 .gk {
-    position: absolute;
-    bottom: 0;
-    left: 5px;
     text-align: center;
     color: white; 
+    background: rgba(69, 169, 221, 0.7);
+    border-radius: 50%;
+    width: 60px; 
+    height: 60px;
+    box-shadow: 0 4px 6px rgba(69, 169, 221, 0.5);
+    transition: opacity 0.3s ease, transform 0.3s ease; 
 }
+
+.player-card:hover .gk {
+    opacity: 0.8; 
+    transform: translateY(-5px); 
+}
+
+
 
 #add-player-form {
     display: flex;
@@ -93,8 +113,6 @@ body {
     padding: 7px;
     margin-bottom: 8px;
 }
-
-
 
 .input-group {
     display: flex;
@@ -122,85 +140,85 @@ body {
     box-shadow: 0 0 5px #28a745;
 }
 
-button{
+button {
     font-size: 1.1rem;
     border: none;
     border-radius: 40px;
     cursor: pointer;
     background-color: #1d54ae;
     color: white;
-    padding: 8px 12px;
-    transition: transform 0.2s ease;
+
 }
 
-/*Starting Eleven positioning*/
-
-.goalkeeper{
-    position: absolute;
-    bottom: 0;
-    left: 50%;
-    transform: translateX(-50%);
+.bench{
+    display: flex; 
+    flex-direction: colum;
 }
 
-.left-back{
-    position: absolute;
-    left: 23%;
-    transform: translateX(-149%);
-    bottom: 5rem;
+ /* Mobile Responsive Styles */
+ @media (max-width: 768px) {
+    .main {
+        flex-direction: column;
+        padding: 0 1rem;
+    }
+
+    .formation-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns for smaller screens */
+        gap: 20px;
+    }
+
+    .player-card {
+        width: 80px;
+        height: 100px;
+    }
+
+    .form-player {
+        padding: 8px;
+    }
+
+    #add-player-form input,
+    #add-player-form select {
+        font-size: 0.8rem;
+        padding: 6px;
+    }
+
+    .input-group input {
+        width: 48%;
+    }
+
+    button {
+        font-size: 1rem;
+        padding: 10px;
+    }
 }
 
-.cubarsi{
-    position: absolute;
-    left: 36%;
-    transform: translateX(-92%);
-    bottom: 5rem;
-}
+@media (max-width: 480px) {
+    .formation-grid {
+        grid-template-columns: repeat(2, 1fr); 
+        gap: 10px;
+    }
 
-.araujo{
-    position: absolute;
-    left: 59%;
-    transform: translateX(37%);
-    bottom: 5rem;
-}
+    .player-card {
+        width: 70px;
+        height: 90px;
+    }
 
-.kounde{
-    position: absolute;
-    left: 84%;
-    bottom: 5rem;
-}
+    .form-player {
+        padding: 6px;
+    }
 
-.rodri{
-    position: absolute;
-    left: 44%;
-    bottom: 16rem;
-}
+    #add-player-form input,
+    #add-player-form select {
+        font-size: 0.75rem;
+        padding: 5px;
+    }
 
-.pedri{
-    position: absolute;
-    left: 23%;
-    bottom: 18rem;
-}
+    .input-group input {
+        width: 45%;
+    }
 
-.modric{
-    position: absolute;
-    left: 66%;
-    bottom: 18rem;
-}
-
-.lewa{
-    position: absolute;
-    left: 44%;
-    bottom: 28rem;
-}
-
-.lamine {
-    position: absolute;
-    left: 75%;
-    bottom: 28rem;
-}
-
-.vinicius{
-    position: absolute;
-    left: 15%;
-    bottom: 28rem;
+    button {
+        font-size: 0.9rem;
+        padding: 8px;
+    }
 }
