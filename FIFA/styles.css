@@ -1,5 +1,3 @@
-
-
 * {
     margin: 0;
     padding: 0;
@@ -61,36 +59,42 @@ body {
     align-items: center; 
     margin: 0 auto;
     position: relative; 
-    transition: transform 0.3s ease
+    transition: transform 0.3s ease;
+    overflow: hidden;
 }
 
 .player-card:hover {
     transform: scale(1.05); 
-    box-shadow: 0 8px 16px rgba(0, 255, 0, 0.6); 
-    background-color: rgba(255, 255, 255, 0.1); 
+    box-shadow: 0 8px 16px rgba(0, 255, 0, 0.6);    
+    /* background-color: rgba(255, 255, 255, 0.1);  */
 }
 
 .card-background {
     width: 80%;
-    height: auto;
+    height: 100%;
+    object-fit: cover;
 }
 
 .gk {
-    text-align: center;
-    color: white; 
-    background: rgba(69, 169, 221, 0.7);
-    border-radius: 50%;
-    width: 60px; 
-    height: 60px;
-    box-shadow: 0 4px 6px rgba(69, 169, 221, 0.5);
-    transition: opacity 0.3s ease, transform 0.3s ease; 
+    position: absolute; /* Makes the info layer above the image */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    color: white; /* Text color for player info */
+    text-shadow: 0 0 5px rgba(143, 9, 9, 0.7); /* Black shadow for better readability */
+    background: rgba(0, 0, 0, 0.5); /* Dark background for contrast */
+    opacity: 0; /* Hidden by default */
+    transition: opacity 0.3s; /* Fade effect */
 }
 
 .player-card:hover .gk {
-    opacity: 0.8; 
-    transform: translateY(-5px); 
+    opacity: 1;
 }
-
 
 
 #add-player-form {
@@ -163,7 +167,7 @@ button {
     }
 
     .formation-grid {
-        grid-template-columns: repeat(3, 1fr); /* 3 columns for smaller screens */
+        grid-template-columns: repeat(3, 1fr); 
         gap: 20px;
     }
 
