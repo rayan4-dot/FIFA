@@ -106,8 +106,8 @@
                 <option value="#" selected>4-3-3</option>
                 <option value="#">4-4-2</option>
             </select>
-            <label for="player-photo">Player image</label>
-            <input type="file" id="player-photo" name="photo" accept="image/*" required>
+            <label for="player-photo">Player image url</label>
+            <input type="url" id="player-photo" name="photo" placeholder="https://example.com" pattern="https://.*" size="30" required>
 
             <label for="player-name">Player name</label>
             <input type="text" id="player-name" name="name" required>
@@ -129,13 +129,13 @@
             <input type="text" name="nationality" required>
 
             <label for="player-flag">Flag</label>
-            <input type="file" name="flag" accept="image/*" required>
+            <input type="url" id="player-flag" name="flag" placeholder="https://example.com" pattern="https://.*" size="30" required>
 
             <label for="player-club">Club</label>
             <input type="text" name="club" required>
 
             <label for="player-logo">Club Logo</label>
-            <input type="file" name="logo" accept="image/*" required>
+            <input type="url" id="player-logo" name="logo" placeholder="https://example.com" pattern="https://.*" size="30" required>
 
             <div class="input-group">
                 <label for="player-rating">Rating</label>
@@ -178,6 +178,7 @@
 </div>
 
 <div class="bench">
+    <div class="bench-grid">
     <div class="player-card" data-position="GK1" id="courtois">
         <img src="img/badge_gold.webp" alt="Player Card" class="card-background">
         <div class="gk">
@@ -185,82 +186,7 @@
             <div class="player-name"></div>
         </div>
     </div>
-    <div class="player-card" data-position="GK2" id="oblak">
-        <img src="img/badge_gold.webp" alt="Player Card" class="card-background">
-        <div class="gk">
-            <div class="player-position">GK2</div>
-            <div class="player-name"></div>
-        </div>
     </div>
-    <div class="player-card" data-position="CB1" id="cubarsi">
-        <img src="img/badge_gold.webp" alt="Player Card" class="card-background">
-        <div class="gk">
-            <div class="player-position">CB1</div>
-            <div class="player-name"></div>
-        </div>
-    </div>
-    <div class="player-card" data-position="CB1" id="inigo">
-        <img src="img/badge_gold.webp" alt="Player Card" class="card-background">
-        <div class="gk">
-            <div class="player-position">CB2</div>
-            <div class="player-name"></div>
-        </div>
-    </div>
-    <div class="player-card" data-position="RB" id="kounde">
-        <img src="img/badge_gold.webp" alt="Player Card" class="card-background">
-        <div class="gk">
-            <div class="player-position">RB</div>
-            <div class="player-name"></div>
-        </div>
-    </div>
-    <div class="player-card" data-position="LB" id="balde">
-        <img src="img/badge_gold.webp" alt="Player Card" class="card-background">
-        <div class="gk">
-            <div class="player-position">LB</div>
-            <div class="player-name"></div>
-        </div>
-    </div>
-    <div class="player-card" data-position="DM" id="rodri">
-        <img src="img/badge_gold.webp" alt="Player Card" class="card-background">
-        <div class="gk">
-            <div class="player-position">DM</div>
-            <div class="player-name"></div>
-        </div>
-    </div>
-    <div class="player-card" data-position="CM1" id="pedri">
-        <img src="img/badge_gold.webp" alt="Player Card" class="card-background">
-        <div class="gk">
-            <div class="player-position">CM1</div>
-            <div class="player-name"></div>
-        </div>
-    </div>
-    <div class="player-card" data-position="CM2">
-        <img src="img/badge_gold.webp" alt="Player Card" class="card-background">
-        <div class="gk">
-            <div class="player-position">CM2</div>
-            <div class="player-name"></div>
-        </div>
-    </div>
-    <div class="player-card" data-position="RW1">
-        <img src="img/badge_gold.webp" alt="Player Card" class="card-background">
-        <div class="gk">
-            <div class="player-position">RW</div>
-            <div class="player-name"></div>
-        </div>
-    </div>
-    <div class="player-card" data-position="LW1">
-        <img src="img/badge_gold.webp" alt="Player Card" class="card-background">
-        <div class="gk">
-            <div class="player-position">LW</div>
-            <div class="player-name"></div>
-        </div>
-    </div>
-    <div class="player-card" data-position="ST">
-        <img src="img/badge_gold.webp" alt="Player Card" class="card-background">
-        <div class="gk">
-            <div class="player-position">ST</div>
-            <div class="player-name"></div>
-        </div>
     </div>
     </div>
 

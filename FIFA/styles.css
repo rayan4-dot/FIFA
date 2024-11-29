@@ -5,7 +5,7 @@
 }
 
 body {
-    color: #633187;
+    color: wheat;
     display: flex;
     flex-direction: column;
     background-image: url('img/stadium_background.webp');
@@ -159,6 +159,9 @@ button {
     flex-direction: colum;
 }
 
+.bench-grid{
+    display: flex;
+}
  /* Mobile Responsive Styles */
  @media (max-width: 768px) {
     .main {
