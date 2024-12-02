@@ -43,15 +43,15 @@ body {
 
 .formation-grid {
     display: grid;
-    grid-template-columns: repeat(5, 1fr); /* 5 columns for the formation grid */
-    grid-template-rows: repeat(4, 1fr); /* 4 rows for different player positions */
+    grid-template-columns: repeat(5, 1fr); 
+    grid-template-rows: repeat(4, 1fr); 
     gap: 61px;
 
 }
 
 .player-card {
-    width: 98px; 
-    height: 120px; 
+    width: 90px;
+    height: 120px;
     display: flex;
     background-color: rgba(135, 142, 137, 0);
     flex-direction: column; 
@@ -66,7 +66,7 @@ body {
 .player-card:hover {
     transform: scale(1.05); 
     box-shadow: 0 8px 16px rgba(0, 255, 0, 0.6);    
-    /* background-color: rgba(255, 255, 255, 0.1);  */
+    background-color: rgba(255, 255, 255, 0.1); 
 }
 
 .card-background {
@@ -75,21 +75,27 @@ body {
     object-fit: cover;
 }
 
+.card-back{
+    width: 45%;
+    height: 80%;
+    object-fit: cover;
+}
+
 .gk {
-    position: absolute; /* Makes the info layer above the image */
+    position: absolute; 
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
     display: flex;
     flex-direction: column;
-    justify-content: center; /* Center content vertically */
-    align-items: center; /* Center content horizontally */
-    color: white; /* Text color for player info */
-    text-shadow: 0 0 5px rgba(143, 9, 9, 0.7); /* Black shadow for better readability */
-    background: rgba(0, 0, 0, 0.5); /* Dark background for contrast */
-    opacity: 0; /* Hidden by default */
-    transition: opacity 0.3s; /* Fade effect */
+    justify-content: center; 
+    align-items: center; 
+    color: white; 
+    text-shadow: 0 0 5px rgba(143, 9, 9, 0.7); 
+    background: rgba(0, 0, 0, 0.5); 
+    opacity: 0; 
+    transition: opacity 0.3s; 
 }
 
 .player-card:hover .gk {

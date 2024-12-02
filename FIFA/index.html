@@ -4,15 +4,12 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FUT CHAMPIONS</title>
-    <link href="styles.css" rel="stylesheet">
-    <script src="fifa.js" defer></script>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 <div class="main">
     <div class="formation-container" style="background-image: url(img/Capture_d_ecran_25-11-2024_222212_-removebg.webp); background-position: center;">
-
-            <!-- Background Image for Formation -->
-        <div class="formation-grid" >
+        <div class="formation-grid">
             <!-- Goalkeeper -->
             <div class="player-card" data-position="GK" style="grid-area: 1 / 3;">
                 <img src="img/badge_gold.webp" alt="Player Card" class="card-background">
@@ -95,9 +92,7 @@
                 </div>
             </div>
         </div>
-
     </div>
-
 
     <div class="form-player">
         <form id="add-player-form">
@@ -114,17 +109,18 @@
 
             <label for="player-position">Pick position</label>
             <select id="player-position" name="position" required>
-                <option value="#">GK</option>
-                <option value="#">CB</option>
-                <option value="#">LB</option>
-                <option value="#">RB</option>
-                <option value="#">CD</option>
-                <option value="#">CM</option>
-                <option value="#">LW</option>
-                <option value="#">RW</option>
-                <option value="#">ST</option>
+                <option value="" disabled selected>Select Position</option> <!-- This option prompts selection -->
+                <option value="GK">GK</option>
+                <option value="CB">CB</option>
+                <option value="LB">LB</option>
+                <option value="RB">RB</option>
+                <option value="CDM">CDM</option>
+                <option value="CM">CM</option>
+                <option value="LW">LW</option>
+                <option value="RW">RW</option>
+                <option value="ST">ST</option>
             </select>
-
+            
             <label for="player-nationality">Nationality</label>
             <input type="text" name="nationality" required>
 
@@ -179,17 +175,16 @@
 
 <div class="bench">
     <div class="bench-grid">
-    <div class="player-card" data-position="GK1" id="courtois">
-        <img src="img/badge_gold.webp" alt="Player Card" class="card-background">
-        <div class="gk">
-            <div class="player-position">GK</div>
-            <div class="player-name"></div>
+        <div class="player-card" data-position="GK1" id="courtois" draggable="true">
+            <img src="img/badge_gold.webp" alt="Player Card" class="card-back">
+            <div class="gk">
+                <div class="player-position">GK</div>
+                <div class="player-name"></div>
+            </div>
         </div>
     </div>
-    </div>
-    </div>
-    </div>
-
 </div>
 </body>
+<script src="fifa.js">
+</script>
 </html>
