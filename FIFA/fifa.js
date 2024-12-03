@@ -8,12 +8,13 @@ document.addEventListener('DOMContentLoaded', function () {
     let dataCollect = JSON.parse(localStorage.getItem('players')) || [];
     let currentPlayerIndex = null;
 
+    let backgroundCard;
+
     // Function to update the bench UI
     function miseDekka() {
         bench.innerHTML = ''; 
         dataCollect.forEach(function (player, index) {
 
-            let backgroundCard;
             if (player.rating < 50) {
                 backgroundCard = 'img/silver.png';
             } else if (player.rating >= 50 && player.rating < 70) {
@@ -26,7 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
             bench.innerHTML += `
             <div class="card-container" style="position:relative; width: 248px; height: 341px;" data-index="${index}" draggable="true">
-                <img src="${backgroundCard}"  style="width: 100%; height: 100%; object-fit: cover;" alt="Player Badge">
+                <img src="${backgroundCard}" style="width: 100%; height: 100%; object-fit: cover;" alt="Player Badge">
                 <div style="position:absolute; top:33%; left:19%; display:flex; flex-direction:column; gap:10px; height:150px;">
                     <img src="${player.playerImageUrl}" id="playerPhoto" style="width:158px; position:absolute; bottom:46px; left:1px;" alt="Player Photo">
                     
@@ -122,7 +123,6 @@ document.addEventListener('DOMContentLoaded', function () {
         
         // dragPlayer()
     });
-
     const playerButtonReset = document.querySelectorAll(".player-card");
     console.log(playerButtonReset)
     playerButtonReset.forEach((card) => {
@@ -215,7 +215,7 @@ document.addEventListener('DOMContentLoaded', function () {
                 <div class="CountryAndTeam" style="display:flex;position:absolute;justify-content:center;left:-53%;top: 23px;;">
                     <div class="nationality"><img src="${player.flagUrl}" class="flag-img" style="width: 9px;top: 40px;left: 64px;position:absolute;" alt="Flag"></div>
                     <div class="club"><img src="${player.clubLogoUrl}" class="club-logo-img" style="width:9px;top: 40px;left: 79px;position:absolute;" alt="Club Logo"></div>
-                    <button id="${player.id}" class="reset-player">
+                    <button id="${player.id}" class="pen reset-player">
                     <i class="fa-solid fa-pen"></i>
                 </button> 
                                </div>
