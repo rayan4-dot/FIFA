@@ -4,16 +4,18 @@ document.addEventListener('DOMContentLoaded', function () {
     const formationGrid = document.querySelector('.formation-grid');
     const playerPositionSelect = document.getElementById('player-position');
 
-    // Load players from local storage
+    // if it returns null, the || [] part ensures that dataCollect is initialized as an empty array which prevents errors later
     let dataCollect = JSON.parse(localStorage.getItem('players')) || [];
-    let currentPlayerIndex = null;
+    //to keep track of the index of a player in the dataCollect array that is currently being edited or updated
+    let currentPlayerIndex = null; //null, aucun joueur séléctioné actuellemnt
 
     let backgroundCard;
 
     // Function to update the bench UI
     function miseDekka() {
         bench.innerHTML = ''; 
-        dataCollect.forEach(function (player, index) {
+        dataCollect.forEach(function (player, index) { //index the player in array, 
+            //player is iteration over each player and perform operations on each player object within the function body
 
             if (player.rating < 50) {
                 backgroundCard = 'img/silver.png';
@@ -59,7 +61,6 @@ document.addEventListener('DOMContentLoaded', function () {
 
     // Initial update of the bench
     miseDekka();
-
 
     // Submit form event listener
     form.addEventListener('submit', function (event) {
@@ -120,52 +121,43 @@ document.addEventListener('DOMContentLoaded', function () {
         miseDekka();
         form.reset(); // Reset the form inputs
 
-        
         // dragPlayer()
     });
     const playerButtonReset = document.querySelectorAll(".player-card");
-    console.log(playerButtonReset)
     playerButtonReset.forEach((card) => {
         card.addEventListener('click', function (e) {
                 const cardContainerDiv = document.querySelector(".card-container");
-                // Get the clicked element
+                // get the clicked element
                 let target = e.target;
-                console.log("target", e.target)
-                // Find the closest card-container
+                // find the closest card-container
                 let cardContainer = target.closest(".player-card");
         
-                // Ensure the cardContainer exists
+                // check if the cardContainer exists
                 if (cardContainer) {
-                    // Remove it from its current parent
-                    console.log(cardContainer)
-                    cardContainer.removeChild(cardContainerDiv);
+                    // remove it from its current parent
+                    cardContainer.removeChild(cardContainerDiv); //!!!!!!!!
                     cardContainer.innerHTML = `
                     <img src="img/badge_gold.webp" alt="Player Card" class="card-background">
                     `
-                    // Append it to the bench
+                    // append it to the bench
                     const newDiv = document.createElement('div');
                     newDiv.className = 'player-card';
                     newDiv.innerHTML = cardContainerDiv.innerHTML;
-                    console.log(newDiv);
+
                     bench.appendChild(newDiv);
-        
-                    console.log(`Moved ${target.id} to the bench.`);
-                } else {
-                    console.log("No valid card container found.");
+                } 
                 }
-            });
+);
         });
 
     // }
-    // Dragging from bench to formation
+    // dragging from bench to formation
     bench.addEventListener('dragstart', function (event) {
         const cardContainer = event.target.closest('.card-container');
-        console.log("cardContainer", cardContainer);
+        //if the card is dragged, its info should be dragged as well
         if (cardContainer) {
             const index = cardContainer.dataset.index;
-            event.dataTransfer.setData('text/plain', index);
-
-            console.log("target", document.querySelector("[data-index=index]"));
+            event.dataTransfer.setData('text/plain', index); //the index of the card being dragged
         }
     });
 
@@ -179,7 +171,6 @@ document.addEventListener('DOMContentLoaded', function () {
         const index = event.dataTransfer.getData('text/plain');
         const player = dataCollect[index];
         const targetCard = event.target.closest('.player-card');
-        console.log(targetCard)
         
         // Validate position before dropping
         if (targetCard && player.position === targetCard.dataset.position) {
@@ -227,7 +218,10 @@ document.addEventListener('DOMContentLoaded', function () {
             </div>`;
             
             targetCard.setAttribute('data-index', index);
-            dataCollect.splice(index, 1); // Remove player from the bench
+            dataCollect.splice(index, 1); // Remove player from the bench, 
+
+            //1 indicates that one element should be removed from the array
+            //indexspecifies the position of the player in the array to be removed
             localStorage.setItem('players', JSON.stringify(dataCollect)); // Update local storage
             miseDekka(); // Refresh bench display
         } else {
