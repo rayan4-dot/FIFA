@@ -8,30 +8,28 @@ document.addEventListener('DOMContentLoaded', function () {
     let dataCollect = JSON.parse(localStorage.getItem('players')) || [];
     let currentPlayerIndex = null;
 
-    // Function to get background image based on player rating
-    function getPlayerCardBackground(rating) {
-        rating = parseFloat(rating); // Convert rating to a number
-        if (rating < 50) {
-            return 'url("")'; // Placeholder for low ratings
-        } else if (rating < 70) {
-            return 'url("FIFA/img/ba")'; // Image for < 70
-        } else if (rating < 80) {
-            return 'url("FIFA/img/badge_ballon_dor.webp")'; // Image for < 80
-        } else {
-            return 'url("FIFA/img/badge_total_rush.webp")'; // Image for >= 80
-        }
-    }
-
-    // Function to render player cards in the bench
+    // Function to update the bench UI
     function miseDekka() {
         bench.innerHTML = ''; 
         dataCollect.forEach(function (player, index) {
-            const backgroundImage = getPlayerCardBackground(player.rating);
+
+            let backgroundCard;
+            if (player.rating < 50) {
+                backgroundCard = 'img/silver.png';
+            } else if (player.rating >= 50 && player.rating < 70) {
+                backgroundCard = 'img/badge_gold.webp';
+            } else if (player.rating >= 70 && player.rating < 80) {
+                backgroundCard = 'img/badge_ballon_dor.webp';
+            } else {
+                backgroundCard = 'img/badge_total_rush.webp';
+            }
+
             bench.innerHTML += `
-            <div class="card-container" style="position:relative; width: 248px; height: 341px; background-image: ${backgroundImage};" data-index="${index}" draggable="true">
-                <img src="img/badge_gold.webp" style="width: 100%; height: 100%; object-fit: cover;" alt="Player Badge">
+            <div class="card-container" style="position:relative; width: 248px; height: 341px;" data-index="${index}" draggable="true">
+                <img src="${backgroundCard}"  style="width: 100%; height: 100%; object-fit: cover;" alt="Player Badge">
                 <div style="position:absolute; top:33%; left:19%; display:flex; flex-direction:column; gap:10px; height:150px;">
                     <img src="${player.playerImageUrl}" id="playerPhoto" style="width:158px; position:absolute; bottom:46px; left:1px;" alt="Player Photo">
+                    
                     <div class="numdiv" style="color:black;position:absolute;bottom: 94%;left: -4px;">
                         <div class="playercard-25-rating" style="font-size: 16px;font-weight: 800;">${player.rating}</div>
                         <div class="playercard-25-position" style="font-size: 12px;font-weight: 800;">${player.position}</div>
@@ -58,34 +56,9 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    // Initial rendering of the bench
+    // Initial update of the bench
     miseDekka();
 
-    // Event listener for clicking on the formation to remove players
-    formationGrid.addEventListener('click', function (event) {
-        const targetCard = event.target.closest('.player-card');
-        
-        if (targetCard) {
-            const index = targetCard.dataset.index; // Get the index of the clicked card
-            
-            if (index !== undefined) {
-                const playerIndex = parseInt(index); // Retrieve the player index
-                const player = dataCollect[playerIndex]; // Get the player data
-                
-                // Remove the player from the formation grid
-                targetCard.parentNode.removeChild(targetCard);
-                
-                // Add the player back to the dataCollect (bench)
-                dataCollect.push(player); 
-                
-                // Update local storage
-                localStorage.setItem('players', JSON.stringify(dataCollect));
-                
-                // Re-render the bench with updated dataCollect
-                miseDekka(); 
-            }
-        }
-    });
 
     // Submit form event listener
     form.addEventListener('submit', function (event) {
@@ -114,8 +87,9 @@ document.addEventListener('DOMContentLoaded', function () {
             return;
         }
 
-        // Create new player object
+        // Create the new player object
         const newPlayer = {
+            id: Date.now().toString(),
             position,
             name,
             rating,
@@ -132,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Check if we're updating an existing player
         if (currentPlayerIndex !== null) {
-            dataCollect[currentPlayerIndex] = newPlayer; // Update existing player
+            dataCollect[currentPlayerIndex] = newPlayer; // Update existing player with new data
             currentPlayerIndex = null; // Reset index after updating
         } else {
             dataCollect.push(newPlayer); // Add new player
@@ -143,20 +117,60 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Update bench and reset the form
         miseDekka();
-        form.reset(); // Reset form inputs
+        form.reset(); // Reset the form inputs
+
+        
+        // dragPlayer()
     });
 
+    const playerButtonReset = document.querySelectorAll(".player-card");
+    console.log(playerButtonReset)
+    playerButtonReset.forEach((card) => {
+        card.addEventListener('click', function (e) {
+                const cardContainerDiv = document.querySelector(".card-container");
+                // Get the clicked element
+                let target = e.target;
+                console.log("target", e.target)
+                // Find the closest card-container
+                let cardContainer = target.closest(".player-card");
+        
+                // Ensure the cardContainer exists
+                if (cardContainer) {
+                    // Remove it from its current parent
+                    console.log(cardContainer)
+                    cardContainer.removeChild(cardContainerDiv);
+                    cardContainer.innerHTML = `
+                    <img src="img/badge_gold.webp" alt="Player Card" class="card-background">
+                    `
+                    // Append it to the bench
+                    const newDiv = document.createElement('div');
+                    newDiv.className = 'player-card';
+                    newDiv.innerHTML = cardContainerDiv.innerHTML;
+                    console.log(newDiv);
+                    bench.appendChild(newDiv);
+        
+                    console.log(`Moved ${target.id} to the bench.`);
+                } else {
+                    console.log("No valid card container found.");
+                }
+            });
+        });
+
+    // }
     // Dragging from bench to formation
     bench.addEventListener('dragstart', function (event) {
         const cardContainer = event.target.closest('.card-container');
+        console.log("cardContainer", cardContainer);
         if (cardContainer) {
             const index = cardContainer.dataset.index;
             event.dataTransfer.setData('text/plain', index);
+
+            console.log("target", document.querySelector("[data-index=index]"));
         }
     });
 
     formationGrid.addEventListener('dragover', function (event) {
-        event.preventDefault(); // Allow dropping
+        event.preventDefault(); // allow dropping
     });
 
     // Handle the drop event
@@ -165,36 +179,53 @@ document.addEventListener('DOMContentLoaded', function () {
         const index = event.dataTransfer.getData('text/plain');
         const player = dataCollect[index];
         const targetCard = event.target.closest('.player-card');
-
+        console.log(targetCard)
+        
         // Validate position before dropping
         if (targetCard && player.position === targetCard.dataset.position) {
-            targetCard.innerHTML = `<div class="card-container" style="position:relative;" data-index="${index}" draggable="true">
-                <img src="img/badge_gold.webp" style="width: 100%; height: 100%; object-fit: cover;" alt="Player Badge">
-                <div class="PlayerImage">
-                    <img style="width: 76%;object-fit: cover;left: 14%;position: absolute;bottom: 36%;" src="${player.playerImageUrl}" id="playerPhoto" alt="Player Photo">
+            targetCard.innerHTML = `<div class="card-container" style="position:relative;"" data-index="${index}" draggable="true" >
+            <img src="img/badge_gold.webp" style="width: 100%; height: 100%; object-fit: cover;" alt="Player Badge">
+            <div class="PlayerImage">
+                <img style="width: 76%;object-fit: cover;left: 14%;position: absolute;bottom: 36%;" src="${player.playerImageUrl}" id="playerPhoto" style="width:158px; position:absolute; bottom:46px; left:1px;" alt="Player Photo">
+            </div>
+            <div style="position:absolute; top:33%; left:19%; display:flex; flex-direction:column; gap:10px; height:150px;">
+                
+                <div class="numdiv" style="color:black; position:absolute;top:-14px;left:-2px;">
+                    
+                    <div class="playercard-25-rating" style="font-size: 9px; font-weight: 800;">${player.rating}</div>
+                    <div class="playercard-25-position" style="font-size: 6px; font-weight: 800;">${player.position}</div>
                 </div>
-                <div style="position:absolute; top:33%; left:19%; display:flex; flex-direction:column; gap:10px; height:150px;">
-                    <div class="numdiv" style="color:black; position:absolute;top:-14px;left:-2px;">
-                        <div class="playercard-25-rating" style="font-size: 9px; font-weight: 800;">${player.rating}</div>
-                        <div class="playercard-25-position" style="font-size: 6px; font-weight: 800;">${player.position}</div>
-                    </div>
-                    <div class="playerNme" style="color:black; display:flex; align-items:center; justify-content:center; white-space:nowrap;">
-                        <p style="font-size: 8px; font-weight: bold; margin: 40px; margin-right: 77%;" class="player-Name" id="playerName">${player.name}</p>
-                    </div>
-                    <div class="playerDetails" style="display:flex; gap: 0.2rem; font-size: 5px; position: absolute; color: black; bottom: 59%; left: -8%;">
-                        <div class="prop1"><div class="ca">PAC</div><div class="ca">${player.pace}</div></div>
-                        <div class="prop1"><div class="ca">SHO</div><div class="ca">${player.shooting}</div></div>
-                        <div class="prop1"><div class="ca">PAS</div><div class="ca">${player.passing}</div></div>
-                        <div class="prop1"><div class="ca">DRI</div><div class="ca">${player.dribbling}</div></div>
-                        <div class="prop1"><div class="ca">DEF</div><div class="ca">${player.defending}</div></div>
-                        <div class="prop1"><div class="ca">PHY</div><div class="ca">${player.physical}</div></div>
-                    </div>
-                    <div class="CountryAndTeam" style="display:flex;position:absolute;justify-content:center;">
-                        <div class="nationality"><img src="${player.flagUrl}" class="flag-img" style="width: 9px;" alt="Flag"></div>
-                        <div class="club"><img src="${player.clubLogoUrl}" class="club-logo-img" style="width:9px;" alt="Club Logo"></div>
-                    </div>
+            
+            
+                <div class="playerNme" style="color:black; bottom:14%; display:flex; align-items:center; justify-content:center; white-space:nowrap;">
+                    <p style="font-size: 8px; font-weight: bold; margin: 40px; margin-right: 77%;" class="player-Name" id="playerName">${player.name}</p>
                 </div>
+            
+            
+                <div class="playerDetails" style="display:flex; gap: 0.2rem; font-size: 5px; position: absolute; color: black; bottom: 59%; left: -8%; color:black;">
+                    <div class="prop1"><div class="ca">PAC</div><div class="ca">${player.pace}</div></div>
+                    <div class="prop1"><div class="ca">SHO</div><div class="ca">${player.shooting}</div></div>
+                    <div class="prop1"><div class="ca">PAS</div><div class="ca">${player.passing}</div></div>
+                    <div class="prop1"><div class="ca">DRI</div><div class="ca">${player.dribbling}</div></div>
+                    <div class="prop1"><div class="ca">DEF</div><div class="ca">${player.defending}</div></div>
+                    <div class="prop1"><div class="ca">PHY</div><div class="ca">9${player.physical}</div></div>
+                </div>
+            
+            
+                <div class="CountryAndTeam" style="display:flex;position:absolute;justify-content:center;left:-53%;top: 23px;;">
+                    <div class="nationality"><img src="${player.flagUrl}" class="flag-img" style="width: 9px;top: 40px;left: 64px;position:absolute;" alt="Flag"></div>
+                    <div class="club"><img src="${player.clubLogoUrl}" class="club-logo-img" style="width:9px;top: 40px;left: 79px;position:absolute;" alt="Club Logo"></div>
+                    <button id="${player.id}" class="reset-player">
+                    <i class="fa-solid fa-pen"></i>
+                </button> 
+                               </div>
+                
+
+            
+            </div>
+            
             </div>`;
+            
             targetCard.setAttribute('data-index', index);
             dataCollect.splice(index, 1); // Remove player from the bench
             localStorage.setItem('players', JSON.stringify(dataCollect)); // Update local storage
@@ -211,12 +242,13 @@ document.addEventListener('DOMContentLoaded', function () {
             dataCollect.splice(index, 1); // Remove the player from the array
             localStorage.setItem('players', JSON.stringify(dataCollect)); // Update local storage
             miseDekka(); // Refresh the bench display
+
         }
 
         // Update button
         if (event.target.classList.contains('update-button')) {
-            currentPlayerIndex = event.target.closest('.card-container').dataset.index; // Find player for update
-            const player = dataCollect[currentPlayerIndex]; // Get player data
+            currentPlayerIndex = event.target.closest('.card-container').dataset.index; // Find which player was clicked
+            const player = dataCollect[currentPlayerIndex]; // Get his existing player data
 
             // Populate the form with player data for editing
             document.getElementById('player-name').value = player.name;
@@ -230,7 +262,8 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('player-logo').value = player.clubLogoUrl;
             document.getElementById('player-flag').value = player.flagUrl;
             document.getElementById('player-photo').value = player.playerImageUrl;
-            playerPositionSelect.value = player.position; // Set position select
+            playerPositionSelect.value = player.position; // Set the position select
         }
     });
+
 });

@@ -1,245 +1,218 @@
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
 
-body {
-    color: wheat;
-    display: flex;
-    flex-direction: column;
-    background-image: url('img/stadium_background.webp');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
-}
+        body {
+            color: wheat;
+            display: flex;
+            flex-direction: column;
+            background-image: url('img/stadium_background.webp');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
 
-.main {
-    flex: 1;
-    display: flex;
-    width: 100%;
-    max-width: 2000px;
-    margin: 1.5rem auto;
-    gap: 1.5rem;
-    padding: 0 1.5rem;
-}
+        .main {
+            flex: 1;
+            display: flex;
+            width: 100%;
+            max-width: 2000px;
+            margin: 1.5rem auto;
+            gap: 1.5rem;
+            padding: 0 1.5rem;
+        }
 
-.form-player {
-    flex: 1;
-    background-image: url(img/back-form.jpeg);
-    padding: 10px;
-    border-radius: 8px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
+        .form-player {
+            flex: 1;
+            background-image: url(img/back-form.jpeg);
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
 
-.formation-container {
-    grid: 2; 
-    position: relative;
-    display: flex;
-    flex-direction: column;
-    
-}
+        .formation-container {
+            position: relative;
+            display: flex;
+            flex-direction: column;
+        }
 
-.formation-grid {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr); 
-    grid-template-rows: repeat(4, 1fr); 
-    gap: 61px;
+        .formation-grid {
+            display: grid;
+            grid-template-columns: repeat(5, 1fr); 
+            grid-template-rows: repeat(4, 1fr); 
+            gap: 20px;
+        }
 
-}
+        .player-card {
+            width: 120px;
+            height: 160px;
+            display: flex;
+            background-color: rgba(135, 142, 137, 0);
+            flex-direction: column; 
+            justify-content: space-between; 
+            align-items: center; 
+            margin: 0 auto;
+            position: relative; 
+            transition: transform 0.3s ease;
+            overflow: hidden;
+        }
 
-.player-card {
-    width: 90px;
-    height: 120px;
-    display: flex;
-    background-color: rgba(135, 142, 137, 0);
-    flex-direction: column; 
-    justify-content: space-between; 
-    align-items: center; 
-    margin: 0 auto;
-    position: relative; 
-    transition: transform 0.3s ease;
-    overflow: hidden;
-}
+        .player-card:hover {
+            transform: scale(1.05); 
+            box-shadow: 0 8px 16px rgba(0, 255, 0, 0.6);    
+            background-color: rgba(255, 255, 255, 0.1); 
+        }
 
-.player-card:hover {
-    transform: scale(1.05); 
-    box-shadow: 0 8px 16px rgba(0, 255, 0, 0.6);    
-    background-color: rgba(255, 255, 255, 0.1); 
-}
+        .card-background {
+            width: 80%;
+            height: 100%;
+            object-fit: cover;
+        }
 
-.card-background {
-    width: 80%;
-    height: 100%;
-    object-fit: cover;
-}
+        .gk {
+            position: absolute; 
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center; 
+            align-items: center; 
+            color: white; 
+            text-shadow: 0 0 5px rgba(143, 9, 9, 0.7); 
+            background: rgba(0, 0, 0, 0.5); 
+            opacity: 0; 
+            transition: opacity 0.3s; 
+        }
 
-.card-back{
-    width: 45%;
-    height: 80%;
-    object-fit: cover;
-}
+        .player-card:hover .gk {
+            opacity: 1;
+        }
 
-.gk {
-    position: absolute; 
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    flex-direction: column;
-    justify-content: center; 
-    align-items: center; 
-    color: white; 
-    text-shadow: 0 0 5px rgba(143, 9, 9, 0.7); 
-    background: rgba(0, 0, 0, 0.5); 
-    opacity: 0; 
-    transition: opacity 0.3s; 
-}
-/* .card-container{
-    background-color: red;
-} */
-.player-card:hover .gk {
-    opacity: 1;
-}
-.PlayerImage{
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    top: 0;
-}
+        #add-player-form {
+            display: flex;
+            flex-direction: column;
+        }
 
+        #add-player-form label {
+            margin-bottom: 5px;
+            font-size: 1.1rem;
+            font-weight: bold;
+        }
 
-#add-player-form {
-    display: flex;
-    flex-direction: column;
-}
+        #add-player-form input,
+        #add-player-form select {
+            font-size: 0.9rem;
+            font-weight: 300;
+            border-color: #28a745;
+            border-radius: 8px;
+            padding: 7px;
+            margin-bottom: 8px;
+        }
 
-#add-player-form label {
-    margin-bottom: 5px;
-    font-size: 1.1rem;
-    font-weight: bold;
-}
+        .input-group {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+            width: 100%;
+        }
 
-#add-player-form input,
-#add-player-form select {
-    font-size: 0.9rem;
-    font-weight: 300;
-    border-color: #28a745;
-    border-radius: 8px;
-    padding: 7px;
-    margin-bottom: 8px;
-}
+        .input-group label {
+            font-size: 0.8rem;
+        }
 
-.input-group {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    width: 100%;
-}
+        .input-group input {
+            width: 45%;
+            font-size: 0.8rem;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ccc;
+        }
 
-.input-group label {
-    font-size: 0.8rem;
-}
+        #add-player-form input:focus,
+        #add-player-form select:focus {
+            outline: none;
+            border-color: #28a745;
+            box-shadow: 0 0 5px #28a745;
+        }
 
-.input-group input {
-    width: 45%;
-    font-size: 0.8rem;
-    padding: 8px;
-    border-radius: 4px;
-    border: 1px solid #ccc;
-}
+        button {
+            font-size: 1.1rem;
+            border: none;
+            border-radius: 40px;
+            cursor: pointer;
+            background-color: #1d54ae;
+            color: white;
+        }
 
-#add-player-form input:focus,
-#add-player-form select:focus {
-    outline: none;
-    border-color: #28a745;
-    box-shadow: 0 0 5px #28a745;
-}
+        /* Mobile Responsive Styles */
+        @media (max-width: 768px) {
+            .main {
+                flex-direction: column;
+                padding: 0 1rem;
+            }
 
-button {
-    font-size: 1.1rem;
-    border: none;
-    border-radius: 40px;
-    cursor: pointer;
-    background-color: #1d54ae;
-    color: white;
+            .formation-grid {
+                grid-template-columns: repeat(3, 1fr); 
+                gap: 20px;
+            }
 
-}
+            .player-card {
+                width: 80px;
+                height: 100px;
+            }
 
-.bench{
-    display: flex; 
-    flex-direction: colum;
-}
+            .form-player {
+                padding: 8px;
+            }
 
-.bench-grid{
-    display: flex;
-}
- /* Mobile Responsive Styles */
- @media (max-width: 768px) {
-    .main {
-        flex-direction: column;
-        padding: 0 1rem;
-    }
+            #add-player-form input,
+            #add-player-form select {
+                font-size: 0.8rem;
+                padding: 6px;
+            }
 
-    .formation-grid {
-        grid-template-columns: repeat(3, 1fr); 
-        gap: 20px;
-    }
+            .input-group input {
+                width: 48%;
+            }
 
-    .player-card {
-        width: 80px;
-        height: 100px;
-    }
+            button {
+                font-size: 1rem;
+                padding: 10px;
+            }
+        }
 
-    .form-player {
-        padding: 8px;
-    }
+        @media (max-width: 480px) {
+            .formation-grid {
+                grid-template-columns: repeat(2, 1fr); 
+                gap: 10px;
+            }
 
-    #add-player-form input,
-    #add-player-form select {
-        font-size: 0.8rem;
-        padding: 6px;
-    }
+            .player-card {
+                width: 70px;
+                height: 90px;
+            }
 
-    .input-group input {
-        width: 48%;
-    }
+            .form-player {
+                padding: 6px;
+            }
 
-    button {
-        font-size: 1rem;
-        padding: 10px;
-    }
-}
+            #add-player-form input,
+            #add-player-form select {
+                font-size: 0.75rem;
+                padding: 5px;
+            }
 
-@media (max-width: 480px) {
-    .formation-grid {
-        grid-template-columns: repeat(2, 1fr); 
-        gap: 10px;
-    }
+            .input-group input {
+                width: 45%;
+            }
 
-    .player-card {
-        width: 70px;
-        height: 90px;
-    }
-
-    .form-player {
-        padding: 6px;
-    }
-
-    #add-player-form input,
-    #add-player-form select {
-        font-size: 0.75rem;
-        padding: 5px;
-    }
-
-    .input-group input {
-        width: 45%;
-    }
-
-    button {
-        font-size: 0.9rem;
-        padding: 8px;
-    }
-}
+            button {
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+        }
