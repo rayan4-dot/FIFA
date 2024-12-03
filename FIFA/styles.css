@@ -97,9 +97,17 @@ body {
     opacity: 0; 
     transition: opacity 0.3s; 
 }
-
+/* .card-container{
+    background-color: red;
+} */
 .player-card:hover .gk {
     opacity: 1;
+}
+.PlayerImage{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
 }
 
 
