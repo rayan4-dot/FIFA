@@ -81,6 +81,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // Validation
         if (!name) {
+
             alert("Player name is required.");
             return;
         }
@@ -106,7 +107,7 @@ document.addEventListener('DOMContentLoaded', function () {
             playerImageUrl,
         };
 
-        // check if we're updating an existing player
+        // check if we're adding an existing player
         if (currentPlayerIndex !== null) { //so there's a player that exists already, should be updated 
             dataCollect[currentPlayerIndex] = newPlayer; // update existing player with new data
             currentPlayerIndex = null; // reset index to null, which means it was updated successfully
@@ -123,6 +124,11 @@ document.addEventListener('DOMContentLoaded', function () {
 
         // dragPlayer()
     });
+
+
+
+
+    
     const playerButtonReset = document.querySelectorAll(".player-card");
     playerButtonReset.forEach((card) => {
         card.addEventListener('click', function (e) {
@@ -261,3 +267,8 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
 });
+
+
+//let somme = [{"id":"1733307823938","position":"CB","name":"Donna Patterson","rating":"60","pace":"72","shooting":"26","passing":"92","dribbling":"21","defending":"44","physical":"98","clubLogoUrl":"https://www.qubafatodoni.biz","flagUrl":"https://www.wivabosaqi.cm","playerImageUrl":"https://www.sosuqo.co"},{"id":"1733307829055","position":"GK","name":"Veronica Owens","rating":"96","pace":"33","shooting":"41","passing":"42","dribbling":"23","defending":"17","physical":"34","clubLogoUrl":"https://www.qehat.us","flagUrl":"https://www.xylomupy.org","playerImageUrl":"https://www.tugypycaxotuf.info"},{"id":"1733307830883","position":"CB","name":"Zena Petersen","rating":"22","pace":"57","shooting":"96","passing":"23","dribbling":"19","defending":"49","physical":"60","clubLogoUrl":"https://www.pavigojecehylyl.us","flagUrl":"https://www.wat.com.au","playerImageUrl":"https://www.kybyrumifo.org.uk"},{"id":"1733307836472","position":"LW","name":"Violet Dorsey","rating":"25","pace":"34","shooting":"14","passing":"13","dribbling":"91","defending":"26","physical":"76","clubLogoUrl":"https://www.bus.cm","flagUrl":"https://www.zafe.mobi","playerImageUrl":"https://www.dovozuqulejuz.tv"},{"id":"1733307840849","position":"CM","name":"Yuli Coffey","rating":"71","pace":"37","shooting":"29","passing":"18","dribbling":"22","defending":"70","physical":"87","clubLogoUrl":"https://www.roqihyjabucen.ca","flagUrl":"https://www.cyfy.me.uk","playerImageUrl":"https://www.vacowaxirero.org"},{"id":"1733307843027","position":"CB","name":"Branden Santana","rating":"71","pace":"57","shooting":"61","passing":"26","dribbling":"56","defending":"22","physical":"51","clubLogoUrl":"https://www.nyl.ws","flagUrl":"https://www.huvifi.in","playerImageUrl":"https://www.heki.org.au"},{"id":"1733307849851","position":"GK","name":"Lilah Randolph","rating":"94","pace":"92","shooting":"70","passing":"73","dribbling":"41","defending":"10","physical":"51","clubLogoUrl":"https://www.wiqahizy.me","flagUrl":"https://www.myrav.co.uk","playerImageUrl":"https://www.detapudohaqafa.org.uk"},{"id":"1733307852078","position":"CB","name":"Faith Puckett","rating":"73","pace":"87","shooting":"30","passing":"13","dribbling":"88","defending":"44","physical":"85","clubLogoUrl":"https://www.pybiw.com.au","flagUrl":"https://www.febaxaxur.ws","playerImageUrl":"https://www.nobetafyri.org.uk"},{"id":"1733307853987","position":"ST","name":"Irene Cox","rating":"38","pace":"16","shooting":"69","passing":"47","dribbling":"29","defending":"48","physical":"48","clubLogoUrl":"https://www.buvuvy.us","flagUrl":"https://www.zih.org.uk","playerImageUrl":"https://www.hexunoled.cc"},{"id":"1733307856034","position":"CM","name":"Erin Duran","rating":"57","pace":"37","shooting":"99","passing":"21","dribbling":"52","defending":"89","physical":"78","clubLogoUrl":"https://www.cewimigoz.tv","flagUrl":"https://www.xyloxazedijolax.org","playerImageUrl":"https://www.raw.net"}]
+
+//const data = somme.reduce(player.rating)
