@@ -106,20 +106,20 @@ document.addEventListener('DOMContentLoaded', function () {
             playerImageUrl,
         };
 
-        // Check if we're updating an existing player
-        if (currentPlayerIndex !== null) {
-            dataCollect[currentPlayerIndex] = newPlayer; // Update existing player with new data
-            currentPlayerIndex = null; // Reset index after updating
+        // check if we're updating an existing player
+        if (currentPlayerIndex !== null) { //so there's a player that exists already, should be updated 
+            dataCollect[currentPlayerIndex] = newPlayer; // update existing player with new data
+            currentPlayerIndex = null; // reset index to null, which means it was updated successfully
         } else {
-            dataCollect.push(newPlayer); // Add new player
+            dataCollect.push(newPlayer); // add new player
         }
 
         // Update local storage
         localStorage.setItem('players', JSON.stringify(dataCollect));
 
-        // Update bench and reset the form
+        // update bench and reset the form
         miseDekka();
-        form.reset(); // Reset the form inputs
+        form.reset(); // reset the form inputs
 
         // dragPlayer()
     });
@@ -222,29 +222,29 @@ document.addEventListener('DOMContentLoaded', function () {
 
             //1 indicates that one element should be removed from the array
             //indexspecifies the position of the player in the array to be removed
-            localStorage.setItem('players', JSON.stringify(dataCollect)); // Update local storage
-            miseDekka(); // Refresh bench display
+            localStorage.setItem('players', JSON.stringify(dataCollect)); // update local storage
+            miseDekka(); // refresh bench display
         } else {
             alert('Invalid Position: drop the player in their designated position.');
         }
     });
 
-    // Bench actions for remove and update buttons
+    // bench actions for remove and update buttons
     bench.addEventListener('click', function (event) {
         if (event.target.classList.contains('remove-button')) {
-            const index = event.target.closest('.card-container').dataset.index; // Get the index
-            dataCollect.splice(index, 1); // Remove the player from the array
-            localStorage.setItem('players', JSON.stringify(dataCollect)); // Update local storage
-            miseDekka(); // Refresh the bench display
+            const index = event.target.closest('.card-container').dataset.index; // get the index
+            dataCollect.splice(index, 1); // remove the player from the array
+            localStorage.setItem('players', JSON.stringify(dataCollect)); // update local storage
+            miseDekka(); // refresh the bench display
 
         }
 
-        // Update button
+        // update button
         if (event.target.classList.contains('update-button')) {
-            currentPlayerIndex = event.target.closest('.card-container').dataset.index; // Find which player was clicked
-            const player = dataCollect[currentPlayerIndex]; // Get his existing player data
+            currentPlayerIndex = event.target.closest('.card-container').dataset.index; // find which player was clicked
+            const player = dataCollect[currentPlayerIndex]; // get his existing player data
 
-            // Populate the form with player data for editing
+            // populate the form with player data for editing
             document.getElementById('player-name').value = player.name;
             document.getElementById('player-rating').value = player.rating;
             document.querySelector('[name="pacing"]').value = player.pace;
@@ -256,7 +256,7 @@ document.addEventListener('DOMContentLoaded', function () {
             document.getElementById('player-logo').value = player.clubLogoUrl;
             document.getElementById('player-flag').value = player.flagUrl;
             document.getElementById('player-photo').value = player.playerImageUrl;
-            playerPositionSelect.value = player.position; // Set the position select
+            playerPositionSelect.value = player.position; // set the position select
         }
     });
 
